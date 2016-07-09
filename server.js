@@ -44,7 +44,7 @@ var profile = {
 };
 
 // Cities Data API Object
-var lived_cities = [
+var lived_cities = {
   {
     _id: 1,
     name: 'Virginia Beach',
@@ -141,7 +141,7 @@ var lived_cities = [
     houses: 1,
     had_fun: true
   },
-];
+};
 
 /**********
  * ROUTES *
@@ -166,19 +166,20 @@ app.get('/api', function api_index(req, res) {
 
 
 // Profile Endpoint
-app.get('/api/profile', function api_index(req, res) {
+app.get('/api/profile', function api_profile(req, res) {
   res.json(profile);
 });
 
 
 // Cities API Endpoints
-// Get All
-app.get('/api/lived_cities', function api_index(req, res) {
+
+// Get All Cities
+app.get('/api/lived_cities', function api_cities(req, res) {
   res.json(lived_cities);
 });
 
-//Get One
-app.get('/api/lived_cities/:id', function api_index(req, res) {
+//Get One City
+app.get('/api/lived_cities/:id', function api_citiesId(req, res) {
   var cityId = req.params.id;
   for (i=0; i<lived_cities.length; i++){
     if (cityId == lived_cities[i]._id){
@@ -186,6 +187,63 @@ app.get('/api/lived_cities/:id', function api_index(req, res) {
     }
   }
   res.send("error: that is not a valid city ID! Try again.");
+});
+
+//Create New City
+app.post('/api/lived_cities', function api_ctiesNew(req, res) {
+  //Create City
+  var newCity = new db.City({
+    _id: req.body.id,
+    name: req.body.name,
+    state: req.body.state,
+    country: req.body.country,
+    years_lived: req.body.years_lived,
+    is_birthplace: req.body.is_birthplace,
+    size: req.body.size,
+    vibe: req.body.vibe,
+    houses: req.bod.houses,
+    had_fun: req.body.had_fun
+  });
+  //Save City to Database
+  newCity.save(function(err, newCity) {
+    if (err) {
+      return console.log("save error: " + err);
+    }
+    res.json(newCity);
+  });
+});
+
+//Update A City
+app.put('/api/lived_cities/:id', function api_citiesUdpate(req, res) {
+  //Identify City and Change
+  var cityId = req.params.id;
+  var change = req.body;
+  //Find Database City
+  db.City.findById(cityId)
+    .exec(function(err, foundCity){
+      if (err) {
+        return console.log("error adding city: " + err);
+      } 
+      //Udpate City with Change Body
+      foundCity = change;
+      //Save City to Database
+      foundCity.save(function(err, foundCity) {
+        if (err) {
+          return console.log("save error: " + err);
+        }
+        res.json(newCity);
+      })
+    })
+});
+
+//Delete A City
+app.delete('/api/lived_cities/:id', function api_citiesDelete(req, res) {
+  //Identify City and Change
+  var cityId = req.params.id;
+  //Find Database City
+  db.City.findOneAndRemove({_id: cityId}, function(err, deletedCity) {
+    res.json(deletedCity);
+  }
 });
 
 /**********

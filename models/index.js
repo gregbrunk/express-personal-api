@@ -3,6 +3,4 @@ mongoose.connect( process.env.MONGOLAB_URI ||
                   process.env.MONGOHQ_URL ||
                   "mongodb://localhost/personal-api");
 
-module.exports.Welcome = require("./welcome_api.js");
-module.exports.Profile = require("./profile.js");
 module.exports.City = require("./lived_cities.js");

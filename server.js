@@ -90,20 +90,9 @@ app.get('/api/lived_cities/:id', function api_citiesId(req, res) {
 });
 
 //Create New City
-app.post('/api/lived_cities', function api_ctiesNew(req, res) {
+app.post('/api/lived_cities/create', function api_ctiesNew(req, res) {
   //Create City
-  var newCity = new db.City({
-    _id: req.body.id,
-    name: req.body.name,
-    state: req.body.state,
-    country: req.body.country,
-    years_lived: req.body.years_lived,
-    is_birthplace: req.body.is_birthplace,
-    size: req.body.size,
-    vibe: req.body.vibe,
-    houses: req.bod.houses,
-    had_fun: req.body.had_fun
-  });
+  var newCity = new db.City(req.body);
   //Save City to Database
   newCity.save(function(err, newCity) {
     if (err) {

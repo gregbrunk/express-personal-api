@@ -10,19 +10,21 @@ GET /api/profile            {
                               is_handsome: false,
                               is_single: false,
                               siblings: [ 
-                                { name: 'Elisabeth Brunk', relationship: 'sister' }, 
-                                { name: 'Tim Brunk', relationship: 'brother' },
+                                { name: 'Elisabeth Brunk', relationship: 'sister', is_nice: true }, 
+                                { name: 'Tim Brunk', relationship: 'brother', is_nice: true },
                               ],
                               pets: [
                               {name: 'tucker', species: 'cat', color: "black", personality: 'feisty', is_a_good_boy: false}
                               ],
                             }
 
-GET /api/lived_cities           [
+GET /api/lived_cities       [
                              {
                                 _id: 1,
                                 name: 'Virginia Beach',
                                 state: 'Virginia',
+                                country: "USA',
+                                years_lived: 1,
                                 is_birthplace: true,
                                 size: 'medium',
                                 vibe: 'gross',
@@ -33,6 +35,8 @@ GET /api/lived_cities           [
                                 _id: 2,
                                 name: 'Chancellorsville',
                                 state: 'Virginia',
+                                country: "USA',
+                                years_lived: 2,
                                 is_birthplace: false,
                                 size: 'small',
                                 vibe: 'quaint',
@@ -43,6 +47,8 @@ GET /api/lived_cities           [
                                 _id: 3,
                                 name: 'Spotsylvania',
                                 state: 'Virginia',
+                                country: "USA',
+                                years_lived: 1,
                                 is_birthplace: false,
                                 size: 'small',
                                 vibe: 'old',
@@ -53,10 +59,12 @@ GET /api/lived_cities           [
                                 _id: 4,
                                 name: 'Fredericksburg',
                                 state: 'Virginia',
+                                country: "USA',
+                                years_lived: 5,
                                 is_birthplace: false,
                                 size: 'small',
                                 vibe: 'pleasant',
-                                houses: 3,
+                                houses: 2,
                                 had_fun: true
                              },
                             ]

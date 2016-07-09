@@ -44,7 +44,7 @@ var profile = {
 };
 
 // Cities Data API Object
-var lived_cities = {
+var lived_cities = [
   {
     _id: 1,
     name: 'Virginia Beach',
@@ -140,8 +140,8 @@ var lived_cities = {
     vibe: 'insane',
     houses: 1,
     had_fun: true
-  },
-};
+  }
+];
 
 /**********
  * ROUTES *
@@ -232,8 +232,8 @@ app.put('/api/lived_cities/:id', function api_citiesUdpate(req, res) {
           return console.log("save error: " + err);
         }
         res.json(newCity);
-      })
-    })
+      });
+    });
 });
 
 //Delete A City
@@ -243,7 +243,7 @@ app.delete('/api/lived_cities/:id', function api_citiesDelete(req, res) {
   //Find Database City
   db.City.findOneAndRemove({_id: cityId}, function(err, deletedCity) {
     res.json(deletedCity);
-  }
+  });
 });
 
 /**********

@@ -10,8 +10,8 @@ GET /api/profile            {
                               is_handsome: false,
                               is_single: false,
                               siblings: [ 
-                                { name: 'Elisabeth Brunk', relationship: 'sister' }, 
-                                { name: 'Tim Brunk', relationship: 'brother' },
+                                { name: 'Elisabeth Brunk', relationship: 'sister', is_nice: true }, 
+                                { name: 'Tim Brunk', relationship: 'brother', is_nice: true },
                               ],
                               pets: [
                               {name: 'tucker', species: 'cat', color: "black", personality: 'feisty', is_a_good_boy: false}

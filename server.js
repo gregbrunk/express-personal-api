@@ -2,58 +2,49 @@
 var express = require('express'),
     app = express();
 
-// parse incoming urlencoded form data
-// and populate the req.body object
+// parse incoming urlencoded form data and populate the req.body object
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /************
  * DATABASE *
  ************/
-
 // var db = require('./models');
+
 
 /**********
  * ROUTES *
  **********/
 
+// Static Files:
 // Serve static files from the `/public` directory:
-// i.e. `/images`, `/scripts`, `/styles`
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
-/*
- * HTML Endpoints
- */
-
-app.get('/', function homepage(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
-});
+// HTML Endpoints:
+// app.get('/', function homepage(req, res) {
+//   res.sendFile(__dirname + '/views/index.html');
+// });
 
 
-/*
- * JSON API Endpoints
- */
-
+//JSON API Endpoints:
 app.get('/api', function api_index(req, res) {
-  // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentation_url: "https://github.com/gregbrunk/express_personal_api/documentation/gregbrunk_api_readme.txt",
+    base_url: "https://serene-meadow-13371.herokuapp.com/",
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
-    ]
-  })
+      {method: "GET", path: "/api/profile", description: "Greg's profile information"},
+      {method: "POST", path: "/api/lived_cities", description: "Information about all the cities where Greg has lived."},
+    ],
+  });
 });
 
 /**********
  * SERVER *
  **********/
 
-// listen on port 3000
+// listen on port 3000 (local and Heroku)
 app.listen(process.env.PORT || 3000, function () {
   console.log('Express server is up and running on port 3000');
 });

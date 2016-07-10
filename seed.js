@@ -6,7 +6,6 @@ var db = require('./models');
 // Cities Data API Object
 var lived_cities = [
   {
-    _id: 1,
     name: 'Virginia Beach',
     state: 'Virginia',
     country: 'USA',
@@ -18,7 +17,6 @@ var lived_cities = [
     had_fun: false
   },
   { 
-    _id: 2,
     name: 'Chancellorsville',
     state: 'Virginia',
     country: 'USA',
@@ -30,7 +28,6 @@ var lived_cities = [
     had_fun: true
   },
   { 
-    _id: 3,
     name: 'Spotsylvania',
     state: 'Virginia',
     country: 'USA',
@@ -42,7 +39,6 @@ var lived_cities = [
     had_fun: true
   },
   {
-    _id: 4,
     name: 'Fredericksburg',
     state: 'Virginia',
     country: 'USA',
@@ -54,7 +50,6 @@ var lived_cities = [
     had_fun: true
   },
   {
-    _id: 5,
     name: 'Peoria',
     state: 'Illinois',
     country: 'USA',
@@ -66,7 +61,6 @@ var lived_cities = [
     had_fun: false
   },
   {
-    _id: 6,
     name: 'Cincinnati',
     state: 'Ohio',
     country: 'USA',
@@ -78,7 +72,6 @@ var lived_cities = [
     had_fun: true
   },
   {  
-    _id: 7,
     name: 'Denver',
     state: 'Colorado',
     country: 'USA',
@@ -90,7 +83,6 @@ var lived_cities = [
     had_fun: true
   },
   {  
-    _id: 8,
     name: 'Auckland',
     state: 'North Island',
     country: 'New Zealand',

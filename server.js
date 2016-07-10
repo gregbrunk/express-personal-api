@@ -5,6 +5,7 @@ var express = require('express'),
 // parse incoming urlencoded form data and populate the req.body object
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 /************
  * DATABASE *
@@ -90,37 +91,62 @@ app.get('/api/lived_cities/:id', function api_citiesId(req, res) {
 });
 
 //Create New City
-app.post('/api/lived_cities/create', function api_ctiesNew(req, res) {
+app.post('/api/lived_cities', function api_ctiesNew(req, res) {
+  var newCity = req.body;
+  console.log(newCity);
   //Create City
-  var newCity = new db.City(req.body);
-  //Save City to Database
-  newCity.save(function(err, newCity) {
+  db.City.create(newCity, function(err, city) {
     if (err) {
       return console.log("save error: " + err);
     }
-    res.json(newCity);
+    res.json(city);
   });
 });
 
 //Update A City
-app.put('/api/lived_cities/:id', function api_citiesUdpate(req, res) {
+app.put('/api/lived_cities/:name', function api_citiesUdpate(req, res) {
   //Identify City and Change
-  var cityId = req.params.id;
+  var cityName = req.params.name;
   var change = req.body;
   //Find Database City
-  db.City.findById(cityId)
-    .exec(function(err, foundCity){
+  db.City.findOne({name: cityName}, function(err, foundCity){
       if (err) {
         return console.log("error adding city: " + err);
       } 
-      //Udpate City with Change Body
-      foundCity = change;
-      //Save City to Database
+      // Update DB City
+      if(change.name !== undefined){
+        foundCity.name = change.name;
+      } 
+      if (change.state !== undefined){
+        foundCity.state = change.state;
+      } 
+      if (change.country !== undefined){
+        foundCity.country = change.country;
+      } 
+      if (change.years_lived !== undefined){
+        foundCity.years_lived = change.years_lived;
+      } 
+      if (change.is_birthplace !== undefined){
+        foundCity.is_birthplace = change.is_birthplace;
+      } 
+      if (change.size !== undefined){
+        foundCity.size = change.size;
+      } 
+      if (change.vibe !== undefined){
+        foundCity.vibe = change.vibe;
+      } 
+      if (change.houses !== undefined){
+        foundCity.houses = change.houses;
+      } 
+      if (change.had_fun !== undefined){
+        foundCity.had_fun = change.had_fun;
+      }
+      //Save DB City to Database
       foundCity.save(function(err, foundCity) {
         if (err) {
           return console.log("save error: " + err);
         }
-        res.json(newCity);
+        res.json(foundCity);
       });
     });
 });

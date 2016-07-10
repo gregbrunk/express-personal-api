@@ -1,8 +1,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var CitiesSchema = new Schema({
-    _id: Number,
+var CitySchema = new Schema({
     name: String,
     state: String,
     country: String,
@@ -14,5 +13,5 @@ var CitiesSchema = new Schema({
     had_fun: Boolean
 });
 
-var City = mongoose.model('City', CitiesSchema);
+var City = mongoose.model('City', CitySchema);
 module.exports = City;

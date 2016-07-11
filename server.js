@@ -112,39 +112,7 @@ app.put('/api/lived_cities/:name', function api_citiesUdpate(req, res) {
   var cityName = req.params.name;
   var change = req.body;
   //Find Database City
-  db.City.findOne({name: cityName}, function(err, foundCity){
-      if (err) {
-        return console.log("error adding city: " + err);
-      } 
-      // Update DB City
-      if(change.name !== undefined){
-        foundCity.name = change.name;
-      } 
-      if (change.state !== undefined){
-        foundCity.state = change.state;
-      } 
-      if (change.country !== undefined){
-        foundCity.country = change.country;
-      } 
-      if (change.years_lived !== undefined){
-        foundCity.years_lived = change.years_lived;
-      } 
-      if (change.is_birthplace !== undefined){
-        foundCity.is_birthplace = change.is_birthplace;
-      } 
-      if (change.size !== undefined){
-        foundCity.size = change.size;
-      } 
-      if (change.vibe !== undefined){
-        foundCity.vibe = change.vibe;
-      } 
-      if (change.houses !== undefined){
-        foundCity.houses = change.houses;
-      } 
-      if (change.had_fun !== undefined){
-        foundCity.had_fun = change.had_fun;
-      }
-      //Save DB City to Database
+  db.City.findOneAndUpdate({name: cityName}, change, function(err, foundCity){
       foundCity.save(function(err, foundCity) {
         if (err) {
           return console.log("save error: " + err);
